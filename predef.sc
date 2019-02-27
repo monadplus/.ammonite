@@ -6,6 +6,7 @@ import $ivy.`org.typelevel::cats-core:1.5.0`, cats._, cats.data._, cats.implicit
 import $ivy.`org.typelevel::cats-effect:1.2.0`, cats.effect._, cats.effect.implicits._
 import $ivy.`org.typelevel::cats-mtl-core:0.4.0`, cats.mtl._, cats.mtl.implicits._
 import $ivy.`co.fs2::fs2-core:1.0.3`, fs2._
+import $ivy.`eu.timepit::refined:0.9.4`, eu.timepit.refined._, eu.timepit.refined.api.Refined, eu.timepit.refined.auto._, eu.timepit.refined.numeric._
 
 import scala.concurrent.ExecutionContext.Implicits.global, scala.concurrent._, scala.concurrent.duration._
 
