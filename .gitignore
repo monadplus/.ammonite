@@ -1,3 +1,5 @@
 cache/
 history
 session
+.metals
+.bloop
