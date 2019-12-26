@@ -9,7 +9,8 @@ import $plugin.$ivy.`org.spire-math::kind-projector:0.9.9`
 import $ivy.`org.typelevel::cats-core:1.5.0`, cats._, cats.data._, cats.implicits._
 import $ivy.`org.typelevel::cats-effect:1.2.0`, cats.effect._, cats.effect.implicits._, cats.effect.concurrent._
 import $ivy.`org.typelevel::cats-mtl-core:0.4.0`, cats.mtl._, cats.mtl.implicits._
-import $ivy.`co.fs2::fs2-core:1.0.3`, fs2._
+import $ivy.`co.fs2::fs2-core:1.0.5`, fs2._, fs2.concurrent._
+import $ivy.`co.fs2::fs2-io:1.0.5`, fs2.io._
 import $ivy.`eu.timepit::refined:0.9.4`, eu.timepit.refined._, eu.timepit.refined.api.Refined, eu.timepit.refined.auto._, eu.timepit.refined.numeric._
 // Clashes cats.effect.concurrent.Ref with scala.meta.Ref
 // import $ivy.`ch.epfl.scala::scalafix-core:0.9.4`, scalafix.v1._, scala.meta._
@@ -37,12 +38,18 @@ import $ivy.`org.http4s::http4s-blaze-client:0.20.0-M7`
 import $ivy.`org.http4s::http4s-circe:0.20.0-M7`
 import org.http4s._, org.http4s.dsl.io._, org.http4s.server.blaze._, org.http4s.implicits._
 import $ivy.`joda-time:joda-time:2.9.7`, org.joda.time._
-import $ivy.`org.scalacheck::scalacheck:1.14.0`, org.scalacheck._, org.scalacheck.Prop.{forAll}, Gen._, Arbitrary._
+import $ivy.`org.scalacheck::scalacheck:1.14.0`, org.scalacheck._, org.scalacheck.Prop.{forAll, BooleanOperators}, Gen._, Arbitrary._
+import $ivy.`com.lihaoyi::fastparse:2.1.0`, fastparse._, NoWhitespace._
+import $ivy.`org.typelevel::cats-collections-core:0.7.0`
+import cats.collections.{Dequeue, Diet, Discrete, DisjointSets, Heap, ISet, Range, AvlSet}
+// Clashes with scala.collection.immutable.Map namespace ( don't know why )
+//import cats.collections.{BitSet, AvlMap, PairingHeap, PartiallyOrderedSet}
 
 // Implicits
 import scala.concurrent.ExecutionContext.Implicits.global, scala.concurrent._, scala.concurrent.duration._
 import java.util.concurrent.{Executors, ScheduledExecutorService}
 import scala.util._
+import scala.util.control.NonFatal
 
 implicit val scheduledExecutorService: ScheduledExecutorService = Executors.newScheduledThreadPool(4)
 implicit val contextShiftIO: ContextShift[IO] = IO.contextShift(global)
